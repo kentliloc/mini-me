@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .wrapper {
+    @apply max-w-[1440px];
+  }
+
+}
+
+body {
+  font-family: var(--font-lato), sans-serif;
+  color: #212121;
+}
+
+/* Mobile Font styles*/
+h1 {
+  font-family: var(--font-lato), sans-serif;
+  font-weight: 800;
+  font-size: 42px;
+  line-height: 42px;
+}
+
+h2 {
+  font-family: var(--font-lato), sans-serif;
+  font-weight: 700;
+  font-size: 42px;
+  line-height: 50px;
+}
+
+h3 {
+  font-family: var(--font-lato), sans-serif;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 34px;
+}
+
+h4 {
+  font-family: var(--font-lato), sans-serif;
+  font-weight: 700;
+  font-size: 21px;
+  line-height: 24px;
+}
+
+.blockquote {
+  font-family: var(--font-lato), sans-serif;
+  font-weight: 300;
+  font-size: 24px;
+  line-height: 36px;
+}
+
+.citation {
+  font-family: var(--font-lato), sans-serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 21px;
+}
+
+p {
+  font-family: var(--font-lato), sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+}
+
+.p-large {
+  font-family: var(--font-lato), sans-serif;
+  font-weight: 400;
+  font-size: 21px;
+  line-height: 25px;
+}
+
+/* Desktop styles using media queries */
+@media (min-width: 768px) {
+  h1 {
+    font-size: 92px;
+    line-height: 84px;
+  }
+
+  h2 {
+    font-size: 56px;
+    line-height: 65px;
+  }
+
+  h3 {
+    font-size: 36px;
+    line-height: 42px;
+  }
+
+  h4 {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  .blockquote {
+    font-size: 36px;
+    line-height: 48px;
+  }
+
+  .citation {
+    font-size: 24px;
+    line-height: 28px;
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 22px;
+  }
+
+  .p-large {
+    font-size: 34px;
+    line-height: 41px;
+  }
+}
