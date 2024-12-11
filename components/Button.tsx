@@ -28,7 +28,7 @@ const Button = ({ name, variant }: ButtonProps) => {
             className={cn(
               'border border-terracotta px-[28px] py-[14px] font-bold capitalize leading-[25.2px] text-terracotta hover:bg-terracotta hover:text-white',
               { 'bg-cream': variant === 'btn-2' },
-              'w-full max-w-[400px] text-[16px] leading-[19.2px] hover:bg-white hover:text-terracotta peer-checked:bg-white peer-checked:text-terracotta',
+              'w-full max-w-[400px] text-[25px] leading-[19.2px] hover:bg-white hover:text-terracotta peer-checked:bg-white peer-checked:text-terracotta',
               { 'bg-terracotta text-white': variant === 'btn-3' }
             )}>
             {name}

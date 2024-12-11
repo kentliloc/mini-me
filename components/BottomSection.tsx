@@ -9,7 +9,7 @@ const BottomSection = ({ image, title, message, alt, button }: BottomSectionProp
       </div>
       <div
         className={cn(
-          'bg-denim px-[16px] pb-[40px] pt-[27px] text-white md:w-1/2 md:pb-[113px] md:pl-[64px] md:pt-[114px]',
+          'bg-denim px-[25px] pb-[40px] pt-[27px] text-white md:w-1/2 md:pb-[113px] md:pl-[64px] md:pt-[114px]',
           { 'bg-terracotta': button }
         )}>
         <div className="flex max-w-[585px] flex-col gap-[12px]">

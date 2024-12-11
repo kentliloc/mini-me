@@ -5,7 +5,7 @@ import React from 'react'
 
 const Alert = ({ id }: { id: string }) => {
   return (
-    <div className="flex flex-col items-center justify-center bg-terracotta py-5">
+    <div className="flex flex-col items-center justify-center bg-terracotta px-[25px] py-5 md:px-[70px]">
       <div className="flex max-w-[1170px] gap-2 text-white">
         {id === 'RCV' && (
           <>

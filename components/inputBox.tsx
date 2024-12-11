@@ -14,11 +14,14 @@ interface InputBoxProps {
 export default function InputBox({ label, type, value, name, onChange, error }: InputBoxProps) {
   return (
     <div className="inputBox flex h-full w-full flex-col">
-      <label className="font-lato text-start text-base font-bold leading-normal text-secondary md:text-lg">
+      <label
+        tabIndex={0}
+        className="font-lato text-start text-base font-bold leading-normal text-secondary md:text-lg">
         {label}
       </label>
       {(type === 'text' || type === 'email' || type === 'tel') && (
         <input
+          tabIndex={0}
           type={type}
           name={name}
           value={value}
@@ -28,20 +31,32 @@ export default function InputBox({ label, type, value, name, onChange, error }: 
       )}
       {type === 'select' && (
         <select
+          tabIndex={0}
           name={name}
           className="h-[50px] px-3 focus:outline-none focus:ring-1 focus:ring-terracotta"
           value={value}
           onChange={onChange}>
           <option value="" disabled></option>
-          <option value="Acquisition Opportunities">Acquisition Opportunities</option>
-          <option value="New Vendors">New Vendors</option>
-          <option value="Media Inquiries">Media Inquiries</option>
-          <option value="Webmaster">Webmaster</option>
-          <option value="Other">Other</option>
+          <option tabIndex={0} value="Acquisition Opportunities">
+            Acquisition Opportunities
+          </option>
+          <option tabIndex={0} value="New Vendors">
+            New Vendors
+          </option>
+          <option tabIndex={0} value="Media Inquiries">
+            Media Inquiries
+          </option>
+          <option tabIndex={0} value="Webmaster">
+            Webmaster
+          </option>
+          <option tabIndex={0} value="Other">
+            Other
+          </option>
         </select>
       )}
       {type === 'textArea' && (
         <textarea
+          tabIndex={0}
           name={name}
           className="h-[236px] p-5 focus:outline-none focus:ring-1 focus:ring-terracotta md:h-full"
           value={value}
@@ -49,7 +64,9 @@ export default function InputBox({ label, type, value, name, onChange, error }: 
       )}
 
       {error && (
-        <span className="font-lato text-start text-base font-normal leading-normal text-error md:text-lg">
+        <span
+          tabIndex={0}
+          className="font-lato text-start text-base font-normal leading-normal text-error md:text-lg">
           {error}
         </span>
       )}

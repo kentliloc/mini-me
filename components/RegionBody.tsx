@@ -21,8 +21,8 @@ const RegionBody = ({ regionData }: { regionData: { region: string } }) => {
         image="region-page-hero"
         variant="hidden"
       />
-      <div className="flex items-center justify-center bg-background-light px-[16px] py-[64px] md:px-[100px]">
-        <p tabIndex={0} className="max-w-[1170px] text-[34px] leading-[40.8px] text-denim">
+      <div className="flex items-center justify-center bg-background-light px-[25px] py-[32px] md:py-[64px] md:px-[100px]">
+        <p tabIndex={0} className="max-w-[1170px] text-[21px] leading-[25.2px] md:text-[34px] md:leading-[40.8px] text-denim">
           At MedExpress, we understand that accidents and illness can happen anytime. See the
           information below to help plan your visit to your
           {` ${state}`} MedExpress neighborhood medical center.

@@ -1,4 +1,6 @@
-import Accordion, { AccordionProvider } from './Accordion'
+'use client'
+import { useContext } from 'react'
+import Accordion, { AccordionContext } from './Accordion'
 
 const ServicesSection = () => {
   const splitIntoColumns = (items: string[]) => {
@@ -80,18 +82,22 @@ const ServicesSection = () => {
   const [womenColumn1, womenColumn2] = splitIntoColumns(women)
   const [workColumn1, workColumn2] = splitIntoColumns(work)
 
-  const AccordionList = ({ items1, items2 }: AccordionListProps) => (
-    <div className="grid grid-cols-1 gap-[12px] px-[16px] py-[32px] md:grid-cols-2 md:gap-[32px] md:px-[70px]">
+  const { openIds } = useContext(AccordionContext)
+
+  const getTabIndex = (id: string) => (openIds.includes(id) ? 0 : -1)
+
+  const AccordionList = ({ items1, items2, id }: AccordionListProps) => (
+    <div className="grid grid-cols-1 gap-[12px] px-[16px] pb-[32px] md:grid-cols-2 md:gap-[32px] md:px-[70px]">
       <ul className="space-y-[12px] text-start text-[18px]">
         {items1.map((item, index) => (
-          <li tabIndex={0} key={index}>
+          <li tabIndex={getTabIndex(id)} key={index}>
             {item}
           </li>
         ))}
       </ul>
       <ul className="space-y-[12px] text-start text-[18px]">
         {items2.map((item, index) => (
-          <li tabIndex={0} key={index}>
+          <li tabIndex={getTabIndex(id)} key={index}>
             {item}
           </li>
         ))}
@@ -114,32 +120,26 @@ const ServicesSection = () => {
           </p>
         </div>
         <div>
-          <AccordionProvider variant="exclusive">
-            <Accordion icon="illness" id="illness" title="Illness">
-              <AccordionList items1={ailmentsColumn1} items2={ailmentsColumn2} />
-            </Accordion>
-            <Accordion icon="injury" id="injury" title="Injury">
-              <AccordionList items1={injuriesColumn1} items2={injuriesColumn2} />
-            </Accordion>
-            <Accordion icon="skin" id="skin" title="Skin Ailments">
-              <AccordionList items1={skinColumn1} items2={skinColumn2} />
-            </Accordion>
-            <Accordion icon="wellness" id="wellness" title="Wellness and Prevention">
-              <AccordionList items1={wellnessColumn1} items2={wellnessColumn2} />
-            </Accordion>
-            <Accordion icon="women" id="women" title="Women's Health">
-              <AccordionList items1={womenColumn1} items2={womenColumn2} />
-            </Accordion>
-            <Accordion icon="STD" id="STD" title="STD/STI Testing" collapsible={false}>
-              <h1>STD/STI Testing</h1>
-            </Accordion>
-            <Accordion icon="sports" id="sports" title="Sports Physicals" collapsible={false}>
-              <h1>Sports Physicals</h1>
-            </Accordion>
-            <Accordion icon="work" id="work" title="Work-related Services">
-              <AccordionList items1={workColumn1} items2={workColumn2} />
-            </Accordion>
-          </AccordionProvider>
+          <Accordion icon="illness" id="1" title="Illness">
+            <AccordionList items1={ailmentsColumn1} items2={ailmentsColumn2} id="1" />
+          </Accordion>
+          <Accordion icon="injury" id="2" title="Injury">
+            <AccordionList items1={injuriesColumn1} items2={injuriesColumn2} id="2" />
+          </Accordion>
+          <Accordion icon="skin" id="3" title="Skin Ailments">
+            <AccordionList items1={skinColumn1} items2={skinColumn2} id="3" />
+          </Accordion>
+          <Accordion icon="wellness" id="4" title="Wellness and Prevention">
+            <AccordionList items1={wellnessColumn1} items2={wellnessColumn2} id="4" />
+          </Accordion>
+          <Accordion icon="women" id="5" title="Women's Health">
+            <AccordionList items1={womenColumn1} items2={womenColumn2} id="5" />
+          </Accordion>
+          <Accordion icon="STD" id="6" title="STD/STI Testing" collapsible={false}></Accordion>
+          <Accordion icon="sports" id="7" title="Sports Physicals" collapsible={false}></Accordion>
+          <Accordion icon="work" id="8" title="Work-related Services">
+            <AccordionList items1={workColumn1} items2={workColumn2} id="8" />
+          </Accordion>
         </div>
       </div>
     </div>

@@ -32,7 +32,7 @@ const LinkSection = () => {
   }, [])
 
   return (
-    <div className="relative flex w-full flex-col items-center justify-center bg-background-light px-[16px] py-[48px]">
+    <div className="relative flex w-full flex-col items-center justify-center bg-background-light px-[25px] py-[48px]">
       <div className="w-full max-w-[1170px]">
         <div
           tabIndex={0}
@@ -64,11 +64,11 @@ const LinkSection = () => {
             </p>
             <div
               tabIndex={0}
-              className="flex flex-col items-center justify-center gap-[6px] md:mt-[25px] md:gap-[16px]">
+              className="flex flex-col items-center justify-center gap-[6px] md:mt-[25px] md:gap-[25px]">
               <h4 role="presentation" aria-hidden="false">
                 Visit a Center
               </h4>
-              <p className="mb-[16px]">
+              <p className="mb-[25px]">
                 Your neighborhood medical center is here to care for your family&apos;s illnesses
                 and injuries.
               </p>
@@ -120,11 +120,11 @@ const LinkSection = () => {
             </p>
             <div
               tabIndex={0}
-              className="flex flex-col items-center justify-center gap-[6px] md:mt-[25px] md:gap-[16px]">
+              className="flex flex-col items-center justify-center gap-[6px] md:mt-[25px] md:gap-[25px]">
               <h4 role="presentation" aria-hidden="false">
                 Video Chat with a Provider
               </h4>
-              <p className="mb-[16px]">
+              <p className="mb-[25px]">
                 Available for urgent care or medical evaluations for every day illnesses and
                 injuries.
               </p>

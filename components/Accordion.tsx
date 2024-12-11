@@ -13,11 +13,15 @@ export const AccordionContext = createContext<{
   toggleId: (id: string) => void
   variant: Variant
   currentOpenId: string | null // Track the current open accordion ID
+  lastOpen: string
+  setLastOpen: (id: string) => void
 }>({
   openIds: [],
   toggleId: () => {},
   variant: 'independent',
-  currentOpenId: null // Initialize with null
+  currentOpenId: null, // Initialize with null
+  lastOpen: '',
+  setLastOpen: () => {}
 })
 
 type AccordionProviderProps = {
@@ -31,6 +35,7 @@ export const AccordionProvider = ({
 }: AccordionProviderProps) => {
   const [openIds, setOpenIds] = useState<string[]>([])
   const [currentOpenId, setCurrentOpenId] = useState<string | null>(null)
+  const [lastOpen, setLastOpen] = useState<string>('')
 
   const toggleId = (id: string) => {
     setOpenIds((prev) => {
@@ -56,7 +61,8 @@ export const AccordionProvider = ({
   }
 
   return (
-    <AccordionContext.Provider value={{ openIds, toggleId, variant, currentOpenId }}>
+    <AccordionContext.Provider
+      value={{ openIds, toggleId, variant, currentOpenId, lastOpen, setLastOpen }}>
       {children}
     </AccordionContext.Provider>
   )
@@ -66,12 +72,12 @@ type AccordionProps = {
   icon?: string
   id: string
   title: string
-  children: ReactNode
+  children?: ReactNode
   collapsible?: boolean
 }
 
 const Accordion = ({ icon, id, title, children, collapsible = true }: AccordionProps) => {
-  const { openIds, toggleId, variant } = useContext(AccordionContext)
+  const { openIds, toggleId, variant, lastOpen, setLastOpen } = useContext(AccordionContext)
   const isOpen = openIds.includes(id)
   const contentRef = useRef<HTMLDivElement>(null)
   const accordionRef = useRef<HTMLDivElement>(null)
@@ -97,6 +103,8 @@ const Accordion = ({ icon, id, title, children, collapsible = true }: AccordionP
   }, [isOpen])
 
   const handleToggle = () => {
+    console.log(lastOpen, '1')
+    console.log(id)
     if (collapsible) {
       toggleId(id)
 
@@ -115,6 +123,15 @@ const Accordion = ({ icon, id, title, children, collapsible = true }: AccordionP
           behavior: 'smooth'
         })
       }
+      if (accordionRef.current && variant === 'exclusive') {
+        const accordionTop = accordionRef.current.getBoundingClientRect().top + window.scrollY
+        const offset = lastOpen != id && lastOpen != '' && lastOpen < id ? 500 : 90
+        window.scrollTo({
+          top: accordionTop - offset,
+          behavior: 'smooth'
+        })
+      }
+      setLastOpen(id)
     }
   }
 
@@ -142,7 +159,7 @@ const Accordion = ({ icon, id, title, children, collapsible = true }: AccordionP
         onClick={handleToggle}>
         <span
           className={cn(
-            'flex items-center gap-[16px] pr-5 md:pr-0 font-bold leading-[25.2px] text-primary transition-all duration-300 ease-in-out md:text-[24px] md:leading-[28.8px]',
+            'flex items-center gap-[16px] pr-5 font-bold leading-[25.2px] text-primary transition-all duration-300 ease-in-out md:pr-0 md:text-[24px] md:leading-[28.8px]',
             { 'text-center text-white': variant === 'independent' && isOpen },
             {
               'text-center text-[21px] font-normal group-hover:text-white':
@@ -168,7 +185,7 @@ const Accordion = ({ icon, id, title, children, collapsible = true }: AccordionP
             height={14}
             className={cn('transition-all duration-300 ease-in-out', {
               'rotate-180': isOpen,
-              hidden: id === 'sports' || id === 'STD'
+              hidden: icon === 'sports' || icon === 'STD'
             })}
           />
         ) : (
@@ -189,8 +206,9 @@ const Accordion = ({ icon, id, title, children, collapsible = true }: AccordionP
         style={{
           maxHeight: contentHeight
         }}
-        className={`w-full  overflow-hidden transition-[max-height] duration-700 ease-in-out`}>
-        <div className={`flex ${isOpen?"mt-0 mb-0":"-mt-10 -mb-10"} transition-all duration-500 w-full flex-col items-center justify-between bg-white py-[50px] text-primary`}>
+        className={`w-full overflow-hidden transition-[max-height] duration-700 ease-in-out`}>
+        <div
+          className={`flex ${isOpen ? 'mb-0 mt-0' : '-mb-10 -mt-10'} w-full flex-col items-center justify-between bg-white py-[50px] text-primary transition-all duration-500`}>
           {children}
         </div>
       </div>

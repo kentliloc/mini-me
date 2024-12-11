@@ -132,4 +132,5 @@ type PrismicImageTag = {
 type AccordionListProps = {
   items1: string[];
   items2: string[];
+  id: string;
 };

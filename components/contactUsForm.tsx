@@ -147,15 +147,19 @@ export default function ContactUsForm() {
   return (
     <div className="flex flex-col items-center justify-center bg-cream px-4 py-8 md:max-h-[946px] md:px-[70px] md:pb-[78px] md:pt-[67px]">
       <div className="flex max-w-[1170px] flex-col items-center justify-center gap-10">
-        <div className="flex text-center flex-col gap-3">
-          <h1 className="w-auto text-center text-[32px] font-normal leading-normal text-denim md:max-w-[1296px] md:text-5xl">
+        <div className="flex flex-col gap-3 text-center">
+          <h1
+            tabIndex={0}
+            role="presentation"
+            aria-hidden="false"
+            className="w-auto text-center text-[32px] font-normal leading-normal text-denim md:max-w-[1296px] md:text-5xl">
             How can we help you?
           </h1>
-          <span className="text-center text-lg font-normal leading-normal text-primary">
+          <p tabIndex={0} className="text-center text-lg font-normal leading-normal text-primary">
             Do you have a general question for a MedExpress team member? Submit your inquiry below
             and we&apos;ll be sure that your question gets routed to the appropriate person.
-          </span>
-          <p>
+          </p>
+          <p tabIndex={0}>
             <span className="font-bold">Please Note:</span> If you submit the form below, you will
             initiate contact with us via an unencrypted communication method which is not 100%
             secure. Information shared on this form or in future emails with GoHealth could be
@@ -163,12 +167,18 @@ export default function ContactUsForm() {
             of and assume this risk.
           </p>
           <div className="border-b border-beige pb-[35px] md:pb-[31px]"></div>
-          <h2 className="w-auto text-center text-lg font-normal leading-normal text-denim md:max-w-[1296px] md:text-[21px]">
+          <h2
+            tabIndex={0}
+            role="presentation"
+            aria-hidden="false"
+            className="w-auto text-center text-lg font-normal leading-normal text-denim md:max-w-[1296px] md:text-[21px]">
             Please enter your contact information and inquiry below.
           </h2>
-          <span className="text-center text-base font-normal leading-normal text-primary md:text-lg">
+          <p
+            tabIndex={0}
+            className="text-center text-base font-normal leading-normal text-primary md:text-lg">
             *Required fields
-          </span>
+          </p>
         </div>
         <form onSubmit={handleSubmit} className="w-full space-y-[40px]">
           <div className="grid h-auto w-full grid-cols-1 flex-col items-stretch justify-center gap-5 md:grid-cols-2">
@@ -207,11 +217,14 @@ export default function ContactUsForm() {
           </div>
           <div className="flex flex-col items-center justify-center gap-5">
             {isError && (
-              <span className="text-start text-base font-normal leading-normal text-error md:text-lg">
+              <span
+                tabIndex={0}
+                className="text-start text-base font-normal leading-normal text-error md:text-lg">
                 Please correct the errors and submit again.
               </span>
             )}
             <button
+              tabIndex={0}
               type="submit"
               disabled={isPending}
               className="w-auto border border-terracotta px-7 py-[14px] text-center text-[21px] font-bold uppercase text-terracotta hover:bg-terracotta hover:text-white">
@@ -220,10 +233,14 @@ export default function ContactUsForm() {
           </div>
         </form>
         <hr className="h-[2px] w-full space-y-10 bg-beige" />
-        <p className="italic text-neutral">
+        <p tabIndex={0} className="italic text-neutral">
           <span className="font-bold">*Emergency Service Notice:</span> If you are suffering from
           chest pain, shortness of breath, severe abdominal pain, stroke-like symptoms, or any other
-          emergency, please dial 911 or go to the nearest ER.
+          emergency, please dial{' '}
+          <span>
+            <a href="tel:911">911</a>
+          </span>{' '}
+          or go to the nearest ER.
         </p>
       </div>
     </div>

@@ -13,11 +13,18 @@ export async function POST(req: Request) {
     })
 
     const mailOptions = {
-        from: process.env.EMAIL_USER,
-        to: `${process.env.EMAIL_RECEIVER}, ${process.env.EMAIL_RECEIVER2}, ${process.env.EMAIL_RECEIVER3}`,
-        subject: 'Contact Us Form Submission',
-        text: `Name: ${name}\nPhone: ${phone}\nEmail: ${email}\nMessage: ${message}\nReason: ${reason}`
-      }
+      from: process.env.EMAIL_USER,
+      to: `${process.env.EMAIL_RECEIVER}, ${process.env.EMAIL_RECEIVER2}, ${process.env.EMAIL_RECEIVER3}`,
+      subject: 'MedExpress Urgent Care - Contact Us form',
+      text: `Reason: ${reason}\nName: ${name}\nPhone: ${phone}\nEmail: ${email}\nMessage: ${message}`,
+      html: `
+        <p><strong>Reason:</strong> ${reason}</p>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Phone:</strong> ${phone}</p>
+        <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+        <p><strong>Message:</strong> ${message}</p>
+      `
+    }
 
     await transporter.sendMail(mailOptions)
 

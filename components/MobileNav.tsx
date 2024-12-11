@@ -7,7 +7,7 @@ const MobileNav = ({ className }: { className?: string }) => {
   return (
     <div
       className={cn(
-        'mx-auto flex h-[80px] w-full items-center justify-between px-[16px]',
+        'mx-auto flex h-[80px] w-full items-center justify-between',
         className
       )}>
       <CustomBurgerMenu />

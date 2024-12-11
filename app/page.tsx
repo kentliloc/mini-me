@@ -1,3 +1,4 @@
+import { AccordionProvider } from '@/components/Accordion'
 import AverageWaitSection from '@/components/AverageWaitSection'
 import HeroSection from '@/components/HeroSection'
 import LinkSection from '@/components/LinkSection'
@@ -10,7 +11,9 @@ export default function Home() {
     <>
       <HeroSection message="walk in or schedule online" image="homepage-hero" />
       <LinkSection />
-      <ServicesSection />
+      <AccordionProvider variant="exclusive">
+        <ServicesSection />
+      </AccordionProvider>
       <AverageWaitSection />
       <QuoteSection />
       <Image

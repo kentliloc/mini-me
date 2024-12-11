@@ -7,8 +7,8 @@ import LinkSection from '@/components/LinkSection'
 import FAQsSection from '@/components/FAQsSection'
 import BottomSection from '@/components/BottomSection'
 import { useParams } from 'next/navigation'
-import Alert from './Alert'
 import { AccordionProvider } from './Accordion'
+import Alert from './Alert'
 
 const CenterBody = ({ centerData, apiKey, centerImage }: CenterBodyProps) => {
   const { id } = useParams()
@@ -57,7 +57,7 @@ const CenterBody = ({ centerData, apiKey, centerImage }: CenterBodyProps) => {
           coordinates={coordinates}
           googlePlaceId={googlePlaceId}
         />
-        <div className="flex flex-col items-center bg-denim px-[16px] py-[32px] text-white">
+        <div className="flex flex-col items-center bg-denim px-[25px] py-[32px] text-white">
           <div className="flex w-full max-w-[1170px] flex-col items-center justify-center gap-[12px] text-center">
             <h3 tabIndex={0} role="presentation" aria-hidden="false">
               MedExpress or Emergency Room?

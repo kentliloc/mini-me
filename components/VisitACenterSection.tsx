@@ -14,10 +14,12 @@ const VisitACenterSection = ({ region, state }: VisitACenterSectionProps) => {
     .sort((a, b) => a.center_name.localeCompare(b.center_name))
 
   return (
-    <div className="flex w-full flex-col items-center justify-center bg-background-blue px-[16px] pb-[59px] pt-[67px] md:px-[70px]">
+    <div className="flex w-full flex-col items-center justify-center bg-background-blue px-[25px] py-[50px] md:pb-[59px] md:pt-[67px] md:px-[70px]">
       <div className="max-w-[1170px] space-y-[25px]">
         <div className="w-full space-y-[12px] text-white">
-          <p tabIndex={0} className="text-center text-[32px] leading-[38.4px] md:text-[36px] md:leading-[43.2px]">
+          <p
+            tabIndex={0}
+            className="text-center text-[32px] leading-[38.4px] md:text-[36px] md:leading-[43.2px]">
             Visit a center in {state}
           </p>
           <p tabIndex={0} className="text-start">
@@ -27,7 +29,7 @@ const VisitACenterSection = ({ region, state }: VisitACenterSectionProps) => {
           </p>
         </div>
         <div className="grid grid-cols-1 place-items-center items-stretch gap-6 md:grid-cols-2 lg:grid-cols-4">
-          <Suspense fallback={<CenterCardSkeleton />}>
+          <Suspense fallback={<CenterCardSkeleton region={region}/>}>
             {stateData.map(async (centerData, index) => {
               const { center_name, address, id, reservationUrl, hours, business_name } = centerData
               const centerTitle = `${center_name}, ${address.region} MedExpress Urgent Care`
@@ -54,6 +56,8 @@ const VisitACenterSection = ({ region, state }: VisitACenterSectionProps) => {
                   .join(', ') || 'Closed'
 
               const reservationLink = reservationUrl?.url
+              const isDisabled = !reservationLink
+
               let centerImage = null
               try {
                 centerImage = await getPrismicCenterImage(id.toUpperCase())
@@ -76,7 +80,7 @@ const VisitACenterSection = ({ region, state }: VisitACenterSectionProps) => {
                       />
                     </div>
                   </Link>
-                  <div className="flex flex-grow flex-col justify-between gap-[16px] px-[21.54px] pb-[13px] text-center">
+                  <div className="flex flex-grow flex-col justify-between gap-[25px] px-[21.54px] pb-[13px] text-center">
                     <div className="flex flex-col gap-[8px] text-start">
                       <Link href={`/location/${region}/${formatCity(address.city)}/${id}`}>
                         <h1 className="text-[18px] leading-[22.5px] tracking-[-2.5%] text-denim">
@@ -88,15 +92,15 @@ const VisitACenterSection = ({ region, state }: VisitACenterSectionProps) => {
                       </p>
                     </div>
                     <div className="flex flex-col gap-[8px]">
-                      <div tabIndex={0} className="w-full bg-background-highlight px-[10px] py-[8px] text-[14px] font-light">
+                      <div
+                        tabIndex={0}
+                        className="w-full bg-background-highlight px-[10px] py-[8px] text-[14px] font-light">
                         <span className="font-normal text-terracotta">Today&apos;s Hours:</span>{' '}
                         {todayHours}
                       </div>
                       <div className="flex flex-col items-center justify-center gap-[8px] text-[12px] md:justify-start">
-                        <Link
-                          href={reservationLink ? reservationLink : '#'}
-                          className={cn('w-full', { 'cursor-not-allowed': !reservationLink })}>
-                          <div className="relative h-full w-full bg-terracotta px-[16px] py-[8px] font-bold text-white">
+                        {isDisabled ? (
+                          <div className="relative h-full w-full cursor-not-allowed bg-terracotta px-[25px] py-[8px] font-bold text-white opacity-50">
                             <span className="flex w-full items-center justify-center whitespace-normal md:mr-5">
                               <span className="flex items-center justify-center space-x-2">
                                 <span>SCHEDULE IN-PERSON VISIT</span>
@@ -107,7 +111,23 @@ const VisitACenterSection = ({ region, state }: VisitACenterSectionProps) => {
                               </span>
                             </span>
                           </div>
-                        </Link>
+                        ) : (
+                          <Link
+                            href={reservationLink ? reservationLink : ''}
+                            className={cn('w-full', { 'cursor-not-allowed': !reservationLink })}>
+                            <div className="relative h-full w-full bg-terracotta px-[25px] py-[8px] font-bold text-white">
+                              <span className="flex w-full items-center justify-center whitespace-normal md:mr-5">
+                                <span className="flex items-center justify-center space-x-2">
+                                  <span>SCHEDULE IN-PERSON VISIT</span>
+                                  <FontAwesomeIcon
+                                    icon={faArrowUpRightFromSquare}
+                                    className="h-[12px]"
+                                  />
+                                </span>
+                              </span>
+                            </div>
+                          </Link>
+                        )}
                         <Link href={'/virtual-visits'} className="w-full">
                           <div className="w-full bg-denim px-[30px] py-[8px] font-bold text-white">
                             SCHEDULE VIRTUAL VISIT

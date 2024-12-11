@@ -3,7 +3,7 @@ import React from 'react'
 
 const AverageWaitSection = () => {
   return (
-    <div className="flex flex-col items-center justify-center gap-[48px] bg-terracotta px-[16px] pb-[64px] pt-[48px] text-center text-white md:gap-[64px] md:px-[180px] md:pb-[80px] md:pt-[64px]">
+    <div className="flex flex-col items-center justify-center gap-[48px] bg-terracotta px-[25px] pb-[64px] pt-[48px] text-center text-white md:gap-[64px] md:px-[180px] md:pb-[80px] md:pt-[64px]">
       <div tabIndex={0} className="flex w-3/4 flex-col gap-3">
         <h2 role="presentation" aria-hidden="false">
           we&apos;re here for you.

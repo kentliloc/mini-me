@@ -165,12 +165,12 @@ const CenterDetailsSection = ({
                       tabIndex={isOpen ? 0 : -1}
                       className="flex w-full justify-between gap-2 pl-[30px]">
                       <span
-                        className={cn('text-[16px] text-[#9c4721]', {
+                        className={cn('text-[25px] text-[#9c4721]', {
                           'font-bold': isToday
                         })}>
                         {day}:
                       </span>
-                      <span className={cn('pr-[26px] text-[16px]', { 'font-bold': isToday })}>
+                      <span className={cn('pr-[26px] text-[25px]', { 'font-bold': isToday })}>
                         {time.join(':')}
                       </span>
                     </div>
@@ -230,7 +230,10 @@ const CenterDetailsSection = ({
             <Link
               onClick={handleClick}
               href={reservationLink || ''}
-              tabIndex={0} className={cn('w-full text-center', { 'cursor-not-allowed': !reservationLink })}>
+              tabIndex={0}
+              className={cn('w-full text-center', {
+                'cursor-not-allowed opacity-50': !reservationLink
+              })}>
               <div className="relative flex h-full items-center justify-center bg-terracotta px-6 py-2 font-bold text-white">
                 <span className="relative whitespace-normal md:-ml-5">
                   SCHEDULE IN-PERSON VISIT
